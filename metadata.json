@@ -1,0 +1,6 @@
+{
+  "name": "254 Runner",
+  "description": "A proud, heritage-driven Kenyan running-apparel brand storefront.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

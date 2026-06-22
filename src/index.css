@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-brand-red: #E2231A;
+  --color-brand-black: #111111;
+  --color-brand-green: #008753;
+  --color-brand-green-emerald: #00A86B;
+}
+
+@layer base {
+  body {
+    background-color: #F2F2F2;
+    color: #111111;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Vibrant Palette Custom Themes */
+.vibrant-speed-sash {
+  background: linear-gradient(135deg, #008753 0%, #008753 25%, #FFFFFF 25%, #FFFFFF 28%, #111111 28%, #111111 31%, #E2231A 31%, #E2231A 100%);
+}
+
+.vibrant-maze-overlay {
+  background-image: repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%);
+  background-size: 10px 10px;
+}
+
+/* Custom continuous background shine/maze animation or soft utilities */
+.greek-maze-panel {
+  background-color: var(--color-brand-green);
+  position: relative;
+  overflow: hidden;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+  color: transparent;
+}
+

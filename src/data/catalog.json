@@ -1,0 +1,80 @@
+[
+  {
+    "item_code": "254-ELITE-SING-M-RD",
+    "item_name": "254 Elite Singlet",
+    "description": "Designed for elite runner performance. Crafted in proud national racing red with quick-dry micro-mesh fabric, tailored green stitching details, and superior air flow. Features a faint tone-on-tone Greek-key heritage print across side torso.",
+    "price": 3200,
+    "currency": "KES",
+    "colorway": "Red",
+    "gender": "Men",
+    "sizes": ["S", "M", "L", "XL"],
+    "in_stock": true,
+    "image": "/src/assets/images/red_elite_singlet_1782160005599.jpg",
+    "is_set": false
+  },
+  {
+    "item_code": "254-HERITAGE-TEE-W-WH",
+    "item_name": "Heritage Performance Tee",
+    "description": "Tailored ladies running jersey featuring our stunning signature diagonal 'Speed Sash' device in Kenya green and scarlet red. Extremely lightweight moisture-wicking weave prevents chafing and keeps you cool through half and full marathon distances.",
+    "price": 3800,
+    "currency": "KES",
+    "colorway": "White",
+    "gender": "Women",
+    "sizes": ["S", "M", "L"],
+    "in_stock": true,
+    "image": "/src/assets/images/white_performance_tee_1782160017674.jpg",
+    "is_set": false
+  },
+  {
+    "item_code": "254-KIPCHOGE-SET-M-RD",
+    "item_name": "Kipchoge Elite Training Set (Vest + Shorts)",
+    "description": "Maximum freedom of movement for highest training efforts. Features a sleek, high-ventilation racing vest printed with our Maasai shield crest, coupled with featherweight split-cut running shorts in matte black. The gold standard for marathon trainees.",
+    "price": 7500,
+    "currency": "KES",
+    "colorway": "Red",
+    "gender": "Men",
+    "sizes": ["S", "M", "L", "XL"],
+    "in_stock": true,
+    "image": "/src/assets/images/kipchoge_red_set_1782161412007.jpg",
+    "is_set": true
+  },
+  {
+    "item_code": "254-ELITE-SING-W-WH",
+    "item_name": "254 Women's Elite Singlet",
+    "description": "Lightweight, laser-cut women's racing singlet. Features a pristine off-white base colorway offset by the strong Kenyan visual sash detailing. Deep racerback cut offers complete arm swing freedom without friction.",
+    "price": 3200,
+    "currency": "KES",
+    "colorway": "White",
+    "gender": "Women",
+    "sizes": ["S", "M", "L", "XL"],
+    "in_stock": true,
+    "image": "/src/assets/images/white_womens_singlet_1782161428497.jpg",
+    "is_set": false
+  },
+  {
+    "item_code": "254-PACER-TEE-M-RD",
+    "item_name": "254 National Pacer Tee",
+    "description": "Our classic crew neck performance tee in vivid scarlet red. Accented with dual-bordered speed stripes across the shoulders and a large, high-reflectivity Maasai crest emblem on the back for low-light morning runs.",
+    "price": 3800,
+    "currency": "KES",
+    "colorway": "Red",
+    "gender": "Men",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "in_stock": true,
+    "image": "/src/assets/images/red_pacer_tee_1782161442116.jpg",
+    "is_set": false
+  },
+  {
+    "item_code": "254-ITEN-SET-W-RD",
+    "item_name": "Iten Women's Elite Set (Singlet + Shorts)",
+    "description": "Premium double set specifically optimized for long-distance durability. Includes a compression fit speed-sash top and high-performance safety pocket split shorts. Adorned with 'Born Kenyan, Born to Run' text detailing on the waistband.",
+    "price": 7500,
+    "currency": "KES",
+    "colorway": "Red",
+    "gender": "Women",
+    "sizes": ["S", "M", "L"],
+    "in_stock": false,
+    "image": "/src/assets/images/iten_womens_set_red_1782161453645.jpg",
+    "is_set": true
+  }
+]
