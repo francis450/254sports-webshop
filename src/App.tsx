@@ -20,6 +20,7 @@ function AppContent() {
   const [selectedProductCode, setSelectedProductCode] = useState<string | null>(null);
   const [catalog, setCatalog] = useState<CatalogItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [lastOrderId, setLastOrderId] = useState<string | null>(null);
 
   // Load the catalog
   useEffect(() => {
@@ -158,7 +159,7 @@ function AppContent() {
                 >
                   <Checkout
                     onBackToCart={() => setCurrentView("cart")}
-                    onOrderSuccess={() => setCurrentView("order-success")}
+                    onOrderSuccess={(orderId) => { setLastOrderId(orderId); setCurrentView("order-success"); }}
                   />
                 </motion.div>
               )}
@@ -184,24 +185,31 @@ function AppContent() {
                     </div>
 
                     <h1 className="text-2xl sm:text-3xl font-display font-black uppercase text-brand-black mb-3">
-                      ORDER DISPATCHED!
+                      ORDER PLACED!
                     </h1>
                     <p className="text-gray-400 text-xs font-mono uppercase tracking-widest text-brand-red font-semibold mb-6">
                       BORN KENYAN, BORN TO RUN
                     </p>
+
+                    {lastOrderId && (
+                      <div className="bg-brand-black text-white px-5 py-3 mb-6 w-full text-center">
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-gray-400 mb-1">Order Reference</p>
+                        <p className="text-lg font-black font-mono tracking-wider">{lastOrderId}</p>
+                      </div>
+                    )}
 
                     <div className="bg-gray-50 border border-gray-150 p-5 rounded-lg text-left text-sm text-gray-600 mb-8 w-full leading-relaxed space-y-3">
                       <p className="font-bold text-brand-black flex items-center gap-1.5 font-mono text-xs uppercase text-center pb-2.5 border-b border-gray-255">
                         <PhoneCall className="w-4 h-4 text-brand-green-emerald" /> Next Steps
                       </p>
                       <p>
-                        <strong>1. WhatsApp Redirected:</strong> Your compiled order template has been pre-packaged and sent to <strong>+254 725 507 764</strong>.
+                        <strong>1. Order Recorded:</strong> Your order is now saved in our system. Keep your order reference above.
                       </p>
                       <p>
-                        <strong>2. Confirmation:</strong> The 254 Runner desk manager will confirm your delivery address and coordinate mobile money (M-Pesa) or cash-on-delivery options.
+                        <strong>2. Confirmation:</strong> Our team will call or WhatsApp you to confirm delivery details and arrange payment.
                       </p>
                       <p>
-                        <strong>3. Production Match:</strong> The order details will automatically deduct item quantities in our ERPNext server backend manually on confirmation.
+                        <strong>3. Delivery:</strong> Items dispatched once payment is confirmed. Contact us at <strong>+254 725 507 764</strong>.
                       </p>
                     </div>
 

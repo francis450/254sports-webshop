@@ -26,5 +26,6 @@ export interface CartItem {
 
 export interface OrderInput {
   customer_name: string;
+  phone: string;
   delivery_area: string;
 }
