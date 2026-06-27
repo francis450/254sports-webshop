@@ -20,6 +20,7 @@ function AppContent() {
   const [selectedProductCode, setSelectedProductCode] = useState<string | null>(null);
   const [catalog, setCatalog] = useState<CatalogItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [catalogError, setCatalogError] = useState<string | null>(null);
   const [lastOrderId, setLastOrderId] = useState<string | null>(null);
 
   // Load the catalog
@@ -27,10 +28,12 @@ function AppContent() {
     async function loadData() {
       try {
         setLoading(true);
+        setCatalogError(null);
         const data = await getCatalog();
         setCatalog(data);
       } catch (error) {
         console.error("Failed to load catalog", error);
+        setCatalogError(error instanceof Error ? error.message : String(error));
       } finally {
         setLoading(false);
       }
@@ -73,6 +76,20 @@ function AppContent() {
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-brand-black font-extrabold">
                 Syncing catalog from ERPNext...
               </p>
+            </motion.div>
+          ) : catalogError ? (
+            <motion.div
+              key="catalog-error"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="max-w-xl mx-auto px-4 py-20 text-center"
+            >
+              <div className="bg-red-50 border border-red-200 rounded-lg p-8">
+                <p className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-3">
+                  ERPNext Catalog Error
+                </p>
+                <p className="text-sm text-red-700 font-mono break-all">{catalogError}</p>
+              </div>
             </motion.div>
           ) : (
             <>

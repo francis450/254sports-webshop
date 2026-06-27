@@ -7,11 +7,12 @@ interface Env {
 export async function onRequestGet(context: { env: Env; request: Request }): Promise<Response> {
   const { ERPNEXT_BASE_URL, ERPNEXT_API_KEY, ERPNEXT_API_SECRET } = context.env;
 
+  const baseUrl = ERPNEXT_BASE_URL.replace(/\/$/, "");
   const fields = JSON.stringify([
     "item_code", "item_name", "description", "standard_rate", "image", "item_group",
   ]);
   const filters = JSON.stringify([["disabled", "=", 0]]);
-  const url = `${ERPNEXT_BASE_URL}/api/resource/Item?fields=${encodeURIComponent(fields)}&filters=${encodeURIComponent(filters)}&limit_page_length=200`;
+  const url = `${baseUrl}/api/resource/Item?fields=${encodeURIComponent(fields)}&filters=${encodeURIComponent(filters)}&limit_page_length=200`;
 
   let erpRes: Response;
   try {
@@ -19,16 +20,16 @@ export async function onRequestGet(context: { env: Env; request: Request }): Pro
       headers: { Authorization: `token ${ERPNEXT_API_KEY}:${ERPNEXT_API_SECRET}` },
     });
   } catch (err) {
-    return json({ error: "Cannot reach ERPNext" }, 502);
+    return json({ error: `Cannot reach ERPNext at ${baseUrl}: ${String(err)}` }, 502);
   }
 
   if (!erpRes.ok) {
     const body = await erpRes.text();
-    return json({ error: "ERPNext catalog error", detail: body }, 502);
+    return json({ error: `ERPNext returned ${erpRes.status}`, detail: body }, 502);
   }
 
   const data = await erpRes.json() as { data: Record<string, unknown>[] };
-  return json(groupIntoProducts(ERPNEXT_BASE_URL, data.data ?? []), 200);
+  return json(groupIntoProducts(baseUrl, data.data ?? []), 200);
 }
 
 const ITEM_IMAGES: Record<string, string> = {
