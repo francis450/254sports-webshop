@@ -1,0 +1,7 @@
+name = "254sports-webshop"
+main = "worker.ts"
+compatibility_date = "2026-06-27"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
