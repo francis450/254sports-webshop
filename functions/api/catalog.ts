@@ -4,8 +4,80 @@ interface Env {
   ERPNEXT_API_SECRET: string;
 }
 
+const STATIC_CATALOG = [
+  {
+    item_code: "MT-Red",
+    item_name: "Men's Running T-Shirt — Red",
+    description: "Premium quick-dry technical running tee engineered for high-altitude training in Iten.",
+    price: 2500, currency: "KES", colorway: "Red", gender: "Men",
+    sizes: ["S", "M", "L", "XL", "XXL"], in_stock: true,
+    image: "/images/IMG-20260427-WA0003.jpg", is_set: false,
+  },
+  {
+    item_code: "MT-White",
+    item_name: "Men's Running T-Shirt — White",
+    description: "Lightweight moisture-wicking tee in clean white, designed for long-distance runners.",
+    price: 2500, currency: "KES", colorway: "White", gender: "Men",
+    sizes: ["S", "M", "L", "XL", "XXL"], in_stock: true,
+    image: "/images/IMG-20260424-WA0047.jpg", is_set: false,
+  },
+  {
+    item_code: "MV-Red",
+    item_name: "Men's Running Vest — Red",
+    description: "Racerback singlet with superior airflow for elite training performance.",
+    price: 2200, currency: "KES", colorway: "Red", gender: "Men",
+    sizes: ["S", "M", "L", "XL"], in_stock: true,
+    image: "/images/IMG-20260427-WA0005.jpg", is_set: false,
+  },
+  {
+    item_code: "MV-White",
+    item_name: "Men's Running Vest — White",
+    description: "Clean white performance singlet cut for marathon pace and beyond.",
+    price: 2200, currency: "KES", colorway: "White", gender: "Men",
+    sizes: ["S", "M", "L", "XL"], in_stock: true,
+    image: "/images/IMG-20260427-WA0004.jpg", is_set: false,
+  },
+  {
+    item_code: "WT-Red",
+    item_name: "Women's Running T-Shirt — Red",
+    description: "Tailored women's running tee in bold scarlet red with moisture management fabric.",
+    price: 2500, currency: "KES", colorway: "Red", gender: "Women",
+    sizes: ["XS", "S", "M", "L", "XL"], in_stock: true,
+    image: "/images/IMG-20260427-WA0008.jpg", is_set: false,
+  },
+  {
+    item_code: "WT-White",
+    item_name: "Women's Running T-Shirt — White",
+    description: "Premium women's technical tee in pristine white, built for high performance.",
+    price: 2500, currency: "KES", colorway: "White", gender: "Women",
+    sizes: ["XS", "S", "M", "L", "XL"], in_stock: true,
+    image: "/images/IMG-20260427-WA0007.jpg", is_set: false,
+  },
+  {
+    item_code: "WV-Red",
+    item_name: "Women's Running Vest — Red",
+    description: "Sleek women's racing singlet engineered for heat management and elite aerodynamics.",
+    price: 2200, currency: "KES", colorway: "Red", gender: "Women",
+    sizes: ["XS", "S", "M", "L"], in_stock: true,
+    image: "/images/IMG-20260427-WA0010.jpg", is_set: false,
+  },
+  {
+    item_code: "WV-White",
+    item_name: "Women's Running Vest — White",
+    description: "Featherweight women's vest in clean white for optimal race-day performance.",
+    price: 2200, currency: "KES", colorway: "White", gender: "Women",
+    sizes: ["XS", "S", "M", "L"], in_stock: true,
+    image: "/images/IMG-20260427-WA0009.jpg", is_set: false,
+  },
+];
+
 export async function onRequestGet(context: { env: Env; request: Request }): Promise<Response> {
   const { ERPNEXT_BASE_URL, ERPNEXT_API_KEY, ERPNEXT_API_SECRET } = context.env;
+
+  // If env vars are missing, return static catalog immediately
+  if (!ERPNEXT_BASE_URL || !ERPNEXT_API_KEY || !ERPNEXT_API_SECRET) {
+    return json(STATIC_CATALOG, 200);
+  }
 
   const baseUrl = ERPNEXT_BASE_URL.replace(/\/$/, "");
   const fields = JSON.stringify([
@@ -19,17 +91,23 @@ export async function onRequestGet(context: { env: Env; request: Request }): Pro
     erpRes = await fetch(url, {
       headers: { Authorization: `token ${ERPNEXT_API_KEY}:${ERPNEXT_API_SECRET}` },
     });
-  } catch (err) {
-    return json({ error: `Cannot reach ERPNext at ${baseUrl}: ${String(err)}` }, 502);
+  } catch {
+    return json(STATIC_CATALOG, 200);
   }
 
   if (!erpRes.ok) {
-    const body = await erpRes.text();
-    return json({ error: `ERPNext returned ${erpRes.status}`, detail: body }, 502);
+    return json(STATIC_CATALOG, 200);
   }
 
   const data = await erpRes.json() as { data: Record<string, unknown>[] };
-  return json(groupIntoProducts(baseUrl, data.data ?? []), 200);
+  const rows = data.data ?? [];
+
+  // Fall back to static catalog if ERPNext returned no items
+  if (rows.length === 0) {
+    return json(STATIC_CATALOG, 200);
+  }
+
+  return json(groupIntoProducts(baseUrl, rows), 200);
 }
 
 const ITEM_IMAGES: Record<string, string> = {
