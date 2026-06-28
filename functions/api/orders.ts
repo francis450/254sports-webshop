@@ -14,7 +14,8 @@ interface OrderRequestBody {
 
 export async function onRequestPost(context: { env: Env; request: Request }): Promise<Response> {
   const { ERPNEXT_BASE_URL: rawBaseUrl, ERPNEXT_API_KEY, ERPNEXT_API_SECRET, ERPNEXT_GUEST_CUSTOMER } = context.env;
-  const ERPNEXT_BASE_URL = rawBaseUrl.replace(/\/$/, "");
+  const raw = rawBaseUrl.replace(/\/$/, "");
+  const ERPNEXT_BASE_URL = raw.startsWith("http") ? raw : `https://${raw}`;
 
   let body: OrderRequestBody;
   try {

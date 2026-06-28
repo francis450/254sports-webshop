@@ -7,7 +7,8 @@ interface Env {
 export async function onRequestGet(context: { env: Env; request: Request }): Promise<Response> {
   const { ERPNEXT_BASE_URL, ERPNEXT_API_KEY, ERPNEXT_API_SECRET } = context.env;
 
-  const baseUrl = (ERPNEXT_BASE_URL ?? "").replace(/\/$/, "");
+  const rawBase = (ERPNEXT_BASE_URL ?? "").replace(/\/$/, "");
+  const baseUrl = rawBase.startsWith("http") ? rawBase : `https://${rawBase}`;
   const keyLen = ERPNEXT_API_KEY?.length ?? 0;
   const secretLen = ERPNEXT_API_SECRET?.length ?? 0;
 

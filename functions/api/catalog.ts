@@ -79,7 +79,8 @@ export async function onRequestGet(context: { env: Env; request: Request }): Pro
     return json(STATIC_CATALOG, 200);
   }
 
-  const baseUrl = ERPNEXT_BASE_URL.replace(/\/$/, "");
+  const raw = ERPNEXT_BASE_URL.replace(/\/$/, "");
+  const baseUrl = raw.startsWith("http") ? raw : `https://${raw}`;
   const fields = JSON.stringify([
     "item_code", "item_name", "description", "standard_rate", "image", "item_group",
   ]);
