@@ -1,5 +1,6 @@
 import { onRequestGet as catalogGet } from './functions/api/catalog';
 import { onRequestPost as ordersPost } from './functions/api/orders';
+import { onRequestGet as debugGet } from './functions/api/debug';
 
 interface Env {
   ERPNEXT_BASE_URL: string;
@@ -19,6 +20,10 @@ export default {
 
     if (pathname === '/api/orders' && request.method === 'POST') {
       return ordersPost({ request, env });
+    }
+
+    if (pathname === '/api/debug' && request.method === 'GET') {
+      return debugGet({ request, env });
     }
 
     return env.ASSETS.fetch(request);

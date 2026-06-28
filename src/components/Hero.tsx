@@ -8,25 +8,25 @@ interface HeroProps {
 
 const LOOKBOOK_IMAGES = [
   {
-    src: "/src/assets/images/kipchoge_red_set_1782161412007.jpg",
-    title: "Men's Red Elite Set",
-    desc: "Seamless singlet paired with dual-split technical shorts.",
+    src: "/images/IMG-20260427-WA0003.jpg",
+    title: "Men's Running T-Shirt — Red",
+    desc: "Premium quick-dry tee engineered for high-altitude training in Iten.",
   },
   {
-    src: "/src/assets/images/white_womens_singlet_1782161428497.jpg",
-    title: "Women's 254 Singlet",
-    desc: "Premium white mesh with the iconic green-maze speed sash.",
+    src: "/images/IMG-20260427-WA0009.jpg",
+    title: "Women's Running Vest — White",
+    desc: "Featherweight women's vest for optimal race-day performance.",
   },
   {
-    src: "/src/assets/images/red_pacer_tee_1782161442116.jpg",
-    title: "Men's Red Pacer Tee",
-    desc: "Lightweight training top designed for tempo runs at altitude.",
+    src: "/images/IMG-20260427-WA0005.jpg",
+    title: "Men's Running Vest — Red",
+    desc: "Racerback singlet with superior airflow for elite training.",
   },
   {
-    src: "/src/assets/images/iten_womens_set_red_1782161453645.jpg",
-    title: "Women's Iten Set",
-    desc: "Scarlet red singlet paired with ergonomic compression shorts.",
-  }
+    src: "/images/IMG-20260427-WA0008.jpg",
+    title: "Women's Running T-Shirt — Red",
+    desc: "Scarlet red tee with moisture management fabric for women.",
+  },
 ];
 
 const ATHLETE_QUOTES = [
