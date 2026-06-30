@@ -18,6 +18,7 @@ export async function createOrder(params: CreateOrderParams): Promise<CreateOrde
     body: JSON.stringify({
       items: params.items.map((i) => ({
         item_code: i.item_code,
+        size: i.size,
         quantity: i.quantity,
         price: i.price,
       })),

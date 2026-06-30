@@ -6,7 +6,7 @@ interface Env {
 }
 
 interface OrderRequestBody {
-  items: Array<{ item_code: string; quantity: number; price: number }>;
+  items: Array<{ item_code: string; size: string; quantity: number; price: number }>;
   customer_name: string;
   phone: string;
   delivery_area: string;
@@ -42,7 +42,7 @@ export async function onRequestPost(context: { env: Env; request: Request }): Pr
     po_no: phone,
     remarks: `Phone: ${phone}\nDelivery Area: ${delivery_area}`,
     items: items.map((i) => ({
-      item_code: i.item_code,
+      item_code: i.size ? `${i.item_code}-${i.size}` : i.item_code,
       qty: i.quantity,
       rate: i.price,
       delivery_date,
