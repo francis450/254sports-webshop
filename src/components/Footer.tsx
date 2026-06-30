@@ -35,7 +35,7 @@ export default function Footer() {
           <div className="flex flex-col items-center text-center px-4">
             <Mail className="w-5 h-5 text-brand-red mb-2" />
             <span className="font-bold text-gray-200 uppercase tracking-widest mb-1">INQUIRIES</span>
-            <span>run@254sports.co.ke</span>
+            <span>run@sports254.co.ke</span>
           </div>
           <div className="flex flex-col items-center text-center px-4">
             <ShieldCheck className="w-5 h-5 text-gray-300 mb-2" />
