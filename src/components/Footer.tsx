@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="flex flex-col items-center text-center px-4">
             <MapPin className="w-5 h-5 text-brand-green-emerald mb-2" />
             <span className="font-bold text-gray-200 uppercase tracking-widest mb-1">HQ & TRAINING</span>
-            <span>Iten Altitude Hills & Eldoret, Kenya</span>
+            <span>Karura Forest, Nyahururu, Nanyuki,Iten Altitude Hills & Eldoret, Kenya</span>
           </div>
           <div className="flex flex-col items-center text-center px-4">
             <Mail className="w-5 h-5 text-brand-red mb-2" />
